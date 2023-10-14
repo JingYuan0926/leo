@@ -64,9 +64,32 @@ function App() {
     []
   );
 
+  const buttonStyles = {
+    position: 'absolute',
+    top: '150px', // Adjust the top position as needed
+    left: '1060px', // Adjust the left position as needed
+    backgroundColor: '#007bff', // Change to your desired background color
+    color: '#fff', // Change to your desired text color
+    padding: '10px 30px', // Change to your desired padding
+    border: 'none', // Remove the border or set your desired border style
+    // Add more styles as needed
+  };
+
+  const buttonStyles2 = {
+    position: 'absolute',
+    top: '450px', // Adjust the top position as needed
+    left: '725px', // Adjust the left position as needed
+    backgroundColor: '#007bff', // Change to your desired background color
+    color: '#fff', // Change to your desired text color
+    padding: '10px 40px', // Change to your desired padding
+    border: 'none', // Remove the border or set your desired border style
+    // Add more styles as needed
+  };
+  
+
   return (
-    
-      <WalletProvider
+
+    <WalletProvider
       wallets={wallets}
       decryptPermission={DecryptPermission.UponRequest}
       network={WalletAdapterNetwork.Localnet}
@@ -76,15 +99,21 @@ function App() {
         <div className="image-container">
           <img src={paymentImage} alt="Image" />
           <div className="button-container">
-          <button disabled={deploying} onClick={deploy}>
-            {deploying? `Done Payment`: `Payment`}
-          </button>
-            <WalletMultiButton />
+          <div className="button-container">
+          <button
+              className="payment-button" // Add a class to the Payment button
+              disabled={deploying}
+              onClick={deploy}
+              style={buttonStyles2} // Apply position styles to the Payment button
+            >
+              {deploying ? 'Done Payment' : 'Payment'}
+            </button>
+            <WalletMultiButton style={buttonStyles} />
           </div>
         </div>
+           </div>
       </WalletModalProvider>
     </WalletProvider>
-
   );
 }
 

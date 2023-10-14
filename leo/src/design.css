@@ -1,0 +1,21 @@
+/* ButtonPosition.css */
+.button-container {
+    position: relative; /* Container for relative positioning */
+    width: 200px;
+    height: 200px;
+    background-color: lightgray;
+  }
+  
+  .button {
+    position: absolute; /* Button with absolute positioning */
+    top: 20px;
+    left: 20px;
+    
+  }.wallet-multi-button {
+    background-color: #007bff; /* Change to your desired background color */
+    color: #fff; /* Change to your desired text color */
+    padding: 10px 20px; /* Change to your desired padding */
+    border: none; /* Remove the border or set your desired border style */
+    /* Add more styles as needed */
+  }
+  
