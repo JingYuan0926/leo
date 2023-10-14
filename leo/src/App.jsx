@@ -76,6 +76,9 @@ function App() {
         <div className="image-container">
           <img src={paymentImage} alt="Image" />
           <div className="button-container">
+          <button disabled={deploying} onClick={deploy}>
+            {deploying? `Done Payment`: `Payment`}
+          </button>
             <WalletMultiButton />
           </div>
         </div>

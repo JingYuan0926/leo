@@ -1,4 +1,13 @@
 // The program input for helloworld_1/src/main.leo
-[main]
-public a: u32 = 1u32;
-b: u32 = 2u32;
+
+[mint]
+balance: u32 = 100u32;
+
+[transfer]
+receiver: address = aleo1l84trr8yjny6cpwskr9ed3p4lvgfgylymv2z7smpm56w3mjkcy9srtzz8m;
+amount: u32 = 10u32;
+input: Token = Token {
+  owner: aleo1e2wdnlfdz08y0jnu54pl7lt7ljwtmyadfwm36aw8pmz0waknysys2lx272,
+  balance: 100u32,
+  _nonce: 661901642905281065575358583071347542160248627750537954509114007526888699661group
+};

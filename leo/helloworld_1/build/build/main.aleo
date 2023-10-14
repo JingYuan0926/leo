@@ -1,4 +1,4 @@
-program helloworld_1.aleo;
+program leo;
 
 record Token:
     owner as address.private;
