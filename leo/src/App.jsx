@@ -4,6 +4,18 @@ import aleoLogo from "./assets/aleo.svg";
 import "./App.css";
 import helloworld_program from "../helloworld_1/build/main.aleo?raw";
 import { AleoWorker } from "./workers/AleoWorker.js";
+import React from 'react';
+import paymentImage from './payment.png';
+import { useMemo } from "react";
+import { WalletProvider } from "@demox-labs/aleo-wallet-adapter-react";
+import { WalletModalProvider } from "@demox-labs/aleo-wallet-adapter-reactui";
+import { LeoWalletAdapter } from "@demox-labs/aleo-wallet-adapter-leo";
+import {
+  DecryptPermission,
+  WalletAdapterNetwork,
+} from "@demox-labs/aleo-wallet-adapter-base";
+import { WalletMultiButton } from "@demox-labs/aleo-wallet-adapter-reactui";
+
 
 const aleoWorker = AleoWorker();
 function App() {
@@ -43,60 +55,33 @@ function App() {
     setDeploying(false);
   }
 
-  return (
-    <>
-      <div>
-        <a href="https://aleo.org" target="_blank">
-          <img src={aleoLogo} className="logo" alt="Aleo logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1></h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          <button onClick={generateAccount}>
-            {account
-              ? `Account is ${JSON.stringify(account)}`
-              : `Click to generate account`}
-          </button>
-        </p>
-        <p>
-          <button disabled={executing} onClick={execute}>
-            {executing
-              ? `Executing...check console for details...`
-              : `Execute helloworld.aleo`}
-          </button>
-        </p>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
+  const wallets = useMemo(
+    () => [
+      new LeoWalletAdapter({
+        appName: "Leo Demo App",
+      }),
+    ],
+    []
+  );
 
-      {/* Advanced Section */}
-      <div className="card">
-        <h2>Advanced Actions</h2>
-        <p>
-          Deployment on Aleo requires certain prerequisites like seeding your
-          wallet with credits and retrieving a fee record. Check README for more
-          details.
-        </p>
-        <p>
-          <button disabled={deploying} onClick={deploy}>
-            {deploying
-              ? `Deploying...check console for details...`
-              : `Deploy helloworld.aleo`}
-          </button>
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Aleo and React logos to learn more
-      </p>
-    </>
+  return (
+    
+      <WalletProvider
+      wallets={wallets}
+      decryptPermission={DecryptPermission.UponRequest}
+      network={WalletAdapterNetwork.Localnet}
+      autoConnect
+    >
+      <WalletModalProvider>
+        <div className="image-container">
+          <img src={paymentImage} alt="Image" />
+          <div className="button-container">
+            <WalletMultiButton />
+          </div>
+        </div>
+      </WalletModalProvider>
+    </WalletProvider>
+
   );
 }
 

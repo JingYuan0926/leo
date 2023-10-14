@@ -1,0 +1,14 @@
+/* ButtonPosition.css */
+.button-container {
+    position: relative; /* Container for relative positioning */
+    width: 200px;
+    height: 200px;
+    background-color: lightgray;
+  }
+  
+  .button {
+    position: absolute; /* Button with absolute positioning */
+    top: 20px;
+    left: 20px;
+  }
+  
