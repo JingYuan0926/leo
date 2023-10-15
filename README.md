@@ -70,6 +70,7 @@ program helloworld_1.aleo {
     }
 
 // We cant download SnarkOS so cant run this
+
 transition transfer(receiver: address, transfer_amount: u32, input: Token) -> (Token, Token) {
         let sender_balance: u32 = input.balance - transfer_amount;
         let recipient: Token = Token {
